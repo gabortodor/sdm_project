@@ -16,6 +16,8 @@ public class Review {
     @EmbeddedId
     private Key key;
     private double rating;
+    @Lob
+    @Column
     private String comment;
     private boolean verified;
     private String reviewDate;

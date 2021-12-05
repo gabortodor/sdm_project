@@ -18,6 +18,8 @@ public class MovieQuiz {
     @Id
     private int movieId;
 
+    @Lob
+    @Column
     @Convert(converter = QuizElementConverter.class)
     private List<QuizElement> quizElements = new ArrayList<>();
 

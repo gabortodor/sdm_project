@@ -1,27 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {unload, userToken} from '../../redux/UserSlice';
-import {fetchUserData, getTrending, searchMovie, userLogout} from "../../api/apicalls";
+import {getTrending} from "../../api/apicalls";
 import {Helmet} from 'react-helmet';
 import not_found from "../searchresult/not_found.png";
 import verified_tick from "../verified_tick.png";
+import tmdb from "../tmdb.png";
 import MenuBar from "../menubar/MenuBar.js"
 
 export function Dashboard(props) {
-    const user = useSelector(userToken);
-    const dispatch = useDispatch();
-
-    const [searchTerm, setSearchTerm] = useState("");
 
     const [results, setResults] = useState([]);
 
-    const [pages, setPages] = useState([]);
-    const [totalPages, setTotalPages] = useState(0);
-
     useEffect(() => {
         getTrending().then((response) => {
-            setTotalPages(response.data.total_pages);
-            const pageCount = response.data.total_pages;
             setResults(response.data.results.map((movie) => (
                 <li id={movie.id} onClick={handleMovieClick}>
                     <img alt="pic"
@@ -37,7 +27,8 @@ export function Dashboard(props) {
                             <span id={movie.id} onClick={handleMovieClick} className="verified-rating"><img id="tick" alt="verified"
                                                                                                             src={verified_tick}/>{movie.verified_rating === -1 ? "-" : movie.verified_rating}</span>
                             <span id={movie.id} onClick={handleMovieClick}
-                                  className="tmdb-rating">{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
+                                  className="tmdb-rating"><img id="tmdb" alt="tmdb"
+                                                               src={tmdb}/>{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
                         </div>
                     </div>
                 </li>

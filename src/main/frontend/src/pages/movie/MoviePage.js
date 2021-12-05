@@ -97,25 +97,27 @@ export function MoviePage(props) {
             setRecommendations(response.data.results.map((movie) => (
 
                 <div id={movie.id} className="movieRecommendation" onClick={handleMovieClick}>
-                    <img alt="pic"
-                         src={movie.poster_path === null ? not_found : ("https://image.tmdb.org/t/p/original" + movie.poster_path)}
-                         width="100px" id={movie.id} onClick={handleMovieClick}/>
-                    <div className="movie_li_div" id={movie.id} onClick={handleMovieClick}>
-                        <div className="movie_title" id={movie.id} onClick={handleMovieClick}>{movie.title}</div>
-                        <div className="movie_release_date" id={movie.id}
-                             onClick={handleMovieClick}> {movie.release_date === null ? "" : movie.release_date.substring(0, 4)}</div>
-                        <div className="ratings">
-                            <div id={movie.id} onClick={handleMovieClick}
-                                 className="rating">{movie.ratings === -1 ? "-" : movie.ratings}</div>
-                            <div id={movie.id} onClick={handleMovieClick} className="verified-rating">
-                                <div id="tickimg">
-                                    <img alt="Verified_tick" src={verified_tick}/>
+                    <div>
+                        <img alt="pic"
+                             src={movie.poster_path === null ? not_found : ("https://image.tmdb.org/t/p/original" + movie.poster_path)}
+                             width="100px" id={movie.id} onClick={handleMovieClick}/>
+                        <div className="movie_li_div" id={movie.id} onClick={handleMovieClick}>
+                            <div className="movie_title" id={movie.id} onClick={handleMovieClick}>{movie.title}</div>
+                            <div className="movie_release_date" id={movie.id}
+                                 onClick={handleMovieClick}> {movie.release_date === null ? "" : movie.release_date.substring(0, 4)}</div>
+                            <div className="ratings">
+                                <div id={movie.id} onClick={handleMovieClick}
+                                     className="rating">{movie.ratings === -1 ? "-" : movie.ratings}</div>
+                                <div id={movie.id} onClick={handleMovieClick} className="verified-rating">
+                                    <div id="tickdiv">
+                                        <img id="tick" alt="Verified_tick" src={verified_tick}/>
+                                    </div>
+                                    {movie.verified_rating === -1 ? "-" : movie.verified_rating}</div>
+                                <div id={movie.id} onClick={handleMovieClick} className="tmdb-rating">
+                                    <div id="tmdbdiv">
+                                        <img id="tmdb" alt="tmdb"
+                                             src={tmdb_logo}/>{movie.vote_average === -1 ? "-" : movie.vote_average}</div>
                                 </div>
-                                {movie.verified_rating === -1 ? "-" : movie.verified_rating}</div>
-                            <div id={movie.id} onClick={handleMovieClick} className="tmdb-rating">
-                                <div id="tmdbimg">
-                                    <img alt="TMDB"
-                                         src={tmdb_logo}/>{movie.vote_average === -1 ? "-" : movie.vote_average}</div>
                             </div>
                         </div>
                     </div>
@@ -139,18 +141,18 @@ export function MoviePage(props) {
             setMovieReviews(response.data.map((review) => (
                 <div className="review">
                     <div className="reviewHeader">
-                    <div className="reviewStars">
-                        <ReactStars
-                            count={5}
-                            value={review.rating}
-                            size={24}
-                            edit={false}
-                            isHalf={true}
-                            activeColor="#ff6200"/>
-                    </div>
-                    <div className="verifiedReview">
-                    {review.verified === true ? <img alt="verified" src={verified_tick} height="25"/> : <span/>}
-                    </div>
+                        <div className="reviewStars">
+                            <ReactStars
+                                count={5}
+                                value={review.rating}
+                                size={24}
+                                edit={false}
+                                isHalf={true}
+                                activeColor="#ff6200"/>
+                        </div>
+                        <div className="verifiedReview">
+                            {review.verified === true ? <img alt="verified" src={verified_tick} height="25"/> : <span/>}
+                        </div>
                     </div>
                     <div className="reviewComment">{review.comment}</div>
                     <div className="reviewMetaData">
@@ -167,15 +169,15 @@ export function MoviePage(props) {
                     <div className="quizElement">
                         <span className="question">{element.question}</span>
                         <div className="answers">
-                        {element.answers.map((answer) => (
-                            <label className="answer">
-                                <input type="radio" name={element.question} value={answer} id={answer}
-                                       onChange={handleAnswerChange} className="quizInput"/>
-                                       <div className="quizDesign"></div>
-                                <div className="answerText">{answer}</div>
-                            </label>
+                            {element.answers.map((answer) => (
+                                <label className="answer">
+                                    <input type="radio" name={element.question} value={answer} id={answer}
+                                           onChange={handleAnswerChange} className="quizInput"/>
+                                    <div className="quizDesign"></div>
+                                    <div className="answerText">{answer}</div>
+                                </label>
 
-                        ))}
+                            ))}
                         </div>
                     </div>
                 )))
@@ -189,7 +191,6 @@ export function MoviePage(props) {
         })
 
         getMovieInWatchLater(user, (window.location.href).split('?')[1]).then((response) => {
-            console.log(response.data)
             setIsInWatchLater(response.data)
         })
 
@@ -214,7 +215,7 @@ export function MoviePage(props) {
     useEffect(
         () => {
             let timer1 = setTimeout(() => setCurrentCastPage(0), 500);
-            let timer2 = setTimeout(() => setCurrentRecomPage(0), 2000);
+            let timer2 = setTimeout(() => setCurrentRecomPage(0), 3000);
             return () => {
                 clearTimeout(timer1);
                 clearTimeout(timer2);
@@ -225,7 +226,7 @@ export function MoviePage(props) {
 
     function addMovieToWatchLater(event) {
         modifyWatchLater(user, {"action": "ADD", "movie_id": event.target.id}).then();
-        window.location.href = "/movie?" + event.target.id;
+        setIsInWatchLater(true);
     }
 
     function nextCastPage(event) {
@@ -273,7 +274,6 @@ export function MoviePage(props) {
     }
 
     function handleAnswerChange(event) {
-        console.log(event.target.name + "#" + event.target.value)
         sendAnswer({element: event.target.name + "#" + event.target.value})
     }
 
@@ -285,16 +285,16 @@ export function MoviePage(props) {
                     ...movieReviews,
                     <div className="review">
                         <div className="reviewHeader">
-                        <div className="reviewStars">
-                            <ReactStars
-                                count={5}
-                                value={response.data.rating}
-                                size={24}
-                                edit={false}
-                                isHalf={true}
-                                activeColor="#ff6200"/>
-                        </div>
-                        <div className="reviewComment">{response.data.comment}</div>
+                            <div className="reviewStars">
+                                <ReactStars
+                                    count={5}
+                                    value={response.data.rating}
+                                    size={24}
+                                    edit={false}
+                                    isHalf={true}
+                                    activeColor="#ff6200"/>
+                            </div>
+                            <div className="reviewComment">{response.data.comment}</div>
                         </div>
                         <div className="reviewMetaData">
                             <span className="reviewNickName">{response.data.key.nickname}</span>
@@ -303,6 +303,7 @@ export function MoviePage(props) {
                     </div>
                 ]
             );
+            window.location.reload(true);
         });
 
         hideReviewPopup();
@@ -310,7 +311,10 @@ export function MoviePage(props) {
 
     function handleSubmitQuiz(event) {
         submitAnswers(user, (window.location.href).split('?')[1]).then((response) => {
-            console.log(response.data)
+            alert(response.data);
+            if (response.data.split(' ')[0] === "Passed") {
+                setIsUserVerified(true);
+            }
         })
         event.preventDefault()
         hideQuizPopup()
@@ -330,12 +334,12 @@ export function MoviePage(props) {
                 <title>{movieInfo.title}</title>
             </Helmet>
             <div id="body">
+                <MenuBar data={props}/>
                 <div className="container">
-                    <MenuBar data={props}/>
                     <div className="form">
                         <h1 id="title">{movieInfo.title}</h1>
                         <div id="verifiable">
-                        {isQuizPresent ? <img alt="Verifiable" src={verifiable} height="50"/> : <span/>}
+                            {isQuizPresent ? <img alt="Verifiable" src={verifiable} height="50"/> : <span/>}
                         </div>
                         <div id="maininfo">
                             <div id="poster">
@@ -469,9 +473,9 @@ export function MoviePage(props) {
                                     <h1>Write new review</h1>
                                     <div id="verifySpace">
                                         {isQuizPresent ? (isUserVerified ?
-                                            <img alt="You are already verified" src={verified} height="50"/> :
-                                            <button onClick={createQuizPopup}>Verify your review</button>) :
-                                            <span></span>}
+                                                <img alt="You are already verified" src={verified} height="50"/> :
+                                                <button onClick={createQuizPopup}>Verify your review</button>) :
+                                            <span/>}
                                     </div>
                                     <div id="ratingResult">
                                         <div id="ratingStars">
@@ -518,16 +522,16 @@ export function MoviePage(props) {
                                 </form>
                             </Modal>
 
-                                <div id="reviews">
-                                    {movieReviews}
-                                </div>
+                            <div id="reviews">
+                                {movieReviews}
+                            </div>
 
 
                         </div>
                     </div>
-                     <div id="dashboard-button-div">
+                    <div id="dashboard-button-div">
                         <button onClick={() => history.goBack()} id="dashboard-button">Back</button>
-                     </div>
+                    </div>
                 </div>
             </div>
 

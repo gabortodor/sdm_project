@@ -86,10 +86,11 @@
   }
 
   .rating {
-    padding: 0.7em;
-    background-color: #aca6a6;
+    padding: 0.5em 1em;
+    background-color: white;
     color: black;
     border-radius: 10px;
+    font-weight: bold;
   }
 
   .verified-rating {
@@ -101,6 +102,7 @@
     justify-content: space-evenly;
     align-items: center;
     width: 3.5em;
+    font-weight: bold;
   }
 
   .ratings {
@@ -109,12 +111,25 @@
     align-items: center;
   }
 
-  .tmdb-rating {
-    padding: 0.7em;
-    background-color: #35efd1;
-    color: black;
-    border-radius: 10px;
+  .ratings > span {
+    height: 1.5em;
   }
+
+  .tmdb-rating {
+    padding: 0.5em 0.5em;
+    background-color: white;
+    color: #90cea1;
+    border-radius: 10px;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+   #tmdb {
+     margin-right: 0.5em;
+     height: 1.2em;
+   }
 
   #searchlist li:hover {
     color: #ffffff;
@@ -168,7 +183,10 @@
 
   #tick {
     height: 1.5em;
+  }
 
+  #tmdb {
+    height: 1.1em;
   }
 
   #title {

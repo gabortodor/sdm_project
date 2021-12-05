@@ -131,24 +131,43 @@
   }
 
   .rating {
-    padding: 0.7em;
-    background-color: #aca6a6;
+    padding: 0.5em 1em;
+    background-color: white;
     color: black;
     border-radius: 10px;
+    font-weight: bold;
+  }
+
+  .ratings > span {
+    height: 1.5em;
   }
 
   .verified-rating {
-    padding: 0.7em;
-    background-color: #de9240;
-    color: black;
+    padding: 0.5em 0.2em;
     border-radius: 10px;
+    background-color: white;
+    color: #8981ff;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 3.5em;
+    font-weight: bold;
   }
 
   .tmdb-rating {
-    padding: 0.7em;
-    background-color: #35efd1;
-    color: black;
+    padding: 0.5em 0.5em;
+    background-color: white;
+    color: #90cea1;
     border-radius: 10px;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  #tmdb {
+    margin-right: 0.5em;
+    height: 1.2em;
   }
 
   .pages_list .true {
@@ -174,7 +193,7 @@
     margin: 0 auto 0.5em;
   }
 
-  #searchlist img {
+  #searchlist li > img {
     height: 17em;
     display: block;
     width: auto;
@@ -211,6 +230,14 @@
     margin-left: 0.2em;
     margin-right: 0.2em;
     vertical-align: middle;
+  }
+
+  #tick {
+    height: 1.5em;
+  }
+
+  #tmdb {
+    height: 1.1em;
   }
 
   .ratings {

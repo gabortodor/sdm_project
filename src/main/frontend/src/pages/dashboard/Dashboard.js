@@ -4,6 +4,7 @@ import {unload, userToken} from '../../redux/UserSlice';
 import {fetchUserData, getTrending, searchMovie, userLogout} from "../../api/apicalls";
 import {Helmet} from 'react-helmet';
 import not_found from "../searchresult/not_found.png";
+import verified_tick from "../verified_tick.png";
 import MenuBar from "../menubar/MenuBar.js"
 
 export function Dashboard(props) {
@@ -31,10 +32,13 @@ export function Dashboard(props) {
                         <span className="movie_release_date" id={movie.id}
                               onClick={handleMovieClick}> {movie.release_date === null ? "" : movie.release_date.substring(0, 4)}</span>
                         <br/>
-                        <span id={movie.id} onClick={handleMovieClick} className="rating">{movie.ratings === -1 ? "-" : movie.ratings}</span>
-                        <span id={movie.id} onClick={handleMovieClick} className="verified-rating">{movie.verified_rating === -1 ? "-" : movie.verified_rating}</span>
-                        <span id={movie.id} onClick={handleMovieClick}
-                              className="tmdb-rating">{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
+                        <div className="ratings">
+                            <span id={movie.id} onClick={handleMovieClick} className="rating">{movie.ratings === -1 ? "-" : movie.ratings}</span>
+                            <span id={movie.id} onClick={handleMovieClick} className="verified-rating"><img id="tick" alt="verified"
+                                                                                                            src={verified_tick}/>{movie.verified_rating === -1 ? "-" : movie.verified_rating}</span>
+                            <span id={movie.id} onClick={handleMovieClick}
+                                  className="tmdb-rating">{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
+                        </div>
                     </div>
                 </li>
             )));
@@ -53,11 +57,16 @@ export function Dashboard(props) {
             </Helmet>
             <div id="body">
                 <div className="container" id="container">
-                    <MenuBar data={props} />
+                    <MenuBar data={props}/>
                 </div>
-                <ul id="searchlist">
-                    {results.length === 0 ? "No results." : results}
-                </ul>
+                <div id="title">
+                    Trending now:
+                </div>
+                <div>
+                    <ul id="searchlist">
+                        {results.length === 0 ? "No results." : results}
+                    </ul>
+                </div>
             </div>
         </div>
     );

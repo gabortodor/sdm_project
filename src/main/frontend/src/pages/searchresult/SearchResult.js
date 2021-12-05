@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import {Helmet} from "react-helmet";
 import not_found from "./not_found.png";
 import MenuBar from "../menubar/MenuBar";
+import verified_tick from "../verified_tick.png";
+import tmdb from "../tmdb.png";
 
 export function SearchResult(props) {
 
@@ -29,9 +31,11 @@ export function SearchResult(props) {
                         <div className="ratings">
                             <span id={movie.id} onClick={handleMovieClick} className="rating">{movie.ratings === -1 ? "-" : movie.ratings}</span>
                             <span id={movie.id} onClick={handleMovieClick}
-                                  className="verified-rating">{movie.verified_rating === -1 ? "-" : movie.verified_rating}</span>
+                                  className="verified-rating"><img id="tick" alt="verified"
+                                                                   src={verified_tick}/>{movie.verified_rating === -1 ? "-" : movie.verified_rating}</span>
                             <span id={movie.id} onClick={handleMovieClick}
-                                  className="tmdb-rating">{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
+                                  className="tmdb-rating"><img id="tmdb" alt="tmdb"
+                                                               src={tmdb}/>{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
                         </div>
                     </div>
                 </li>

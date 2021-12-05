@@ -8,6 +8,7 @@ import {Helmet} from "react-helmet";
 import not_found from "../searchresult/not_found.png";
 import ReactStars from "react-rating-stars-component";
 import MenuBar from "../menubar/MenuBar";
+import verified from "../verified.png";
 
 export function ProfileHome(props) {
     const user = useSelector(userToken);
@@ -35,6 +36,7 @@ export function ProfileHome(props) {
                             </div>
                             <div className="grid_title" id={movie.data.id} onClick={handleMovieClick}>
                                 <span>{movie.data.title}</span>
+                                {resp.data[i].verified ? <img id="tick" alt="Verified_tick" src={verified}/> : ""}
                             </div>
                             <div className="grid_date">
                                 <span>at: {resp.data[i].reviewDate}</span>

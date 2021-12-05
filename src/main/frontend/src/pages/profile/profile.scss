@@ -204,8 +204,10 @@ html, body {
   .grid_title {
     grid-area: grid_title;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-content: center;
     justify-content: center;
+    align-items: center;
   }
 
   .grid_date {
@@ -239,6 +241,11 @@ html, body {
 
   .remove:hover {
     color: white;
+  }
+
+  #tick {
+    width: 4em;
+    margin-top: 0.2em;
   }
 
 }

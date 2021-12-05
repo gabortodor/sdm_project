@@ -1,14 +1,17 @@
-#searchresult{
+#searchresult {
 
   #body {
     background-color: rgb(7, 2, 24);
     text-align: center;
-    padding: 0%;
+    padding: 0;
     margin: 0;
+    height: 100%;
+    min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
   }
 
   #searchlist {
+    color: white;
     margin-top: 2em;
     list-style: none;
     border: 0;
@@ -83,7 +86,6 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     width: 90px;
-    margin: 0.2em;
   }
 
   #next button:hover,
@@ -117,7 +119,6 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    margin: 0.2em;
   }
 
   .pages_list li button:disabled {
@@ -169,41 +170,53 @@
     display: block;
     align-content: space-between;
     max-width: 20em;
-    display: block;
     width: auto;
-    margin-left: auto;
-    margin-top: 0em;
-    margin-right: auto;
+    margin: 0 auto 0.5em;
   }
 
   #searchlist img {
-    height: 500px;
+    height: 17em;
     display: block;
     width: auto;
-    max-width: 350px;
+    max-width: 250px;
     margin-left: auto;
-    margin-top: 0em;
+    margin-top: 0;
     margin-right: auto;
     justify-content: center;
     padding-bottom: 0.1em;
   }
 
   #searchlist li {
+    display: grid;
+    align-content: space-evenly;
     block-size: 500px;
     transition: all 0.3s ease 0s;
     padding-left: 1em;
     padding-right: 1em;
     position: relative;
-    height: 700px;
-    width: 350px;
+    height: fit-content;
+    min-height: 31em;
+    width: 17em;
     text-align: center;
-    margin: 0 20px;
-    font-size: 18px;
+    font-size: 0.83em;
     float: left;
     justify-content: center;
     background-color: #0e0a27;
-    margin-bottom: 1em;
+    margin: 1em;
     padding-top: 1em;
     border-radius: 25px;
   }
+
+  span {
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    vertical-align: middle;
+  }
+
+  .ratings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 }

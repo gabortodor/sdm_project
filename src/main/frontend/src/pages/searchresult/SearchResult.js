@@ -26,10 +26,13 @@ export function SearchResult(props) {
                         <span className="movie_release_date" id={movie.id}
                               onClick={handleMovieClick}> {movie.release_date === null ? "" : movie.release_date.substring(0, 4)}</span>
                         <br/>
-                        <span id={movie.id} onClick={handleMovieClick} className="rating">{movie.ratings === -1 ? "-" : movie.ratings}</span>
-                        <span id={movie.id} onClick={handleMovieClick} className="verified-rating">{movie.verified_rating === -1 ? "-" : movie.verified_rating}</span>
-                        <span id={movie.id} onClick={handleMovieClick}
-                              className="tmdb-rating">{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
+                        <div className="ratings">
+                            <span id={movie.id} onClick={handleMovieClick} className="rating">{movie.ratings === -1 ? "-" : movie.ratings}</span>
+                            <span id={movie.id} onClick={handleMovieClick}
+                                  className="verified-rating">{movie.verified_rating === -1 ? "-" : movie.verified_rating}</span>
+                            <span id={movie.id} onClick={handleMovieClick}
+                                  className="tmdb-rating">{movie.vote_average === -1 ? "-" : movie.vote_average}</span>
+                        </div>
                     </div>
                 </li>
             )));
